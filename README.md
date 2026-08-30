@@ -1,10 +1,17 @@
 ![Abyss header](assets/abyss-header.png)
 
-# Abyss curated source disclosure
+# Abyss
 
-> **Experimental and unaudited.** This code may contain serious flaws. It is not production-ready or safe, including for lending, and is not a recommendation to use, integrate, deploy, or rely on it.
+> **Experimental.** Abyss has undergone multiple machine-conducted adversarial audits by Kimi K3. These reviews do not guarantee the absence of flaws and are not a substitute for an independent human security audit.
 
-This is a deliberately curated source disclosure for human inspection. It is **not** a working repository, build package, deployed-bytecode verification package, audit, or complete operational release.
+This repository publishes a curated snapshot of the Solidity source for public inspection. It is not a working repository, build package, deployed-bytecode verification package, or operational release.
+
+## Review status
+
+- Kimi K3 performed multiple rounds of adversarial static analysis and Foundry proof-of-concept testing against recorded Abyss source snapshots.
+- The latest recorded round reported no critical, high, or medium vulnerability and no successful exploit across its eight proof-of-concept vectors.
+- Audit conclusions apply only to each report's stated scope and reviewed revision; later source changes are not implicitly covered.
+- The audit artifacts are maintained separately and are intentionally not included in this source-only disclosure.
 
 ## Contents
 
