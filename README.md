@@ -2,40 +2,42 @@
 
 # Abyss
 
-> **Experimental.** Abyss has undergone multiple machine-conducted adversarial audits by Kimi K3. These reviews do not guarantee the absence of flaws and are not a substitute for an independent human security audit.
+Abyss is a permissionless concentrated-liquidity DEX built for token launches. It keeps the familiar Uniswap v3 curve and adds fee and oracle modes designed around quote-token markets.
 
-This repository publishes a curated snapshot of the Solidity source for public inspection. It is not a working repository, build package, deployed-bytecode verification package, or operational release.
+## Features
 
-## Review status
+- **Concentrated liquidity.** LPs choose price ranges instead of spreading liquidity across the entire curve.
+- **Quote-token fees.** Quote pools charge swap fees in the designated quote asset in both trade directions.
+- **Four immutable pool profiles.** Pools select standard or quote-token fees, with either canonical observations alone or canonical plus truncated observations.
+- **Truncated oracle observations.** Oracle-enabled pools maintain a parallel observation ring that limits how far the recorded tick can move at each eligible update.
+- **Permissionless lifecycle.** Pool creation, initialization, liquidity management, and trading do not require an allowlist.
+- **Core-enforced accounting.** Fee collection, settlement checks, and required oracle writes live in the pool rather than depending on a preferred router.
+- **Complete trading periphery.** The source includes routing, quoting, NFT liquidity positions, position locking, fee custody and routing, buyback-and-burn, and the ABYSS token contracts.
 
-- Kimi K3 performed multiple rounds of adversarial static analysis and Foundry proof-of-concept testing against recorded Abyss source snapshots.
-- The latest recorded round reported no critical, high, or medium vulnerability and no successful exploit across its eight proof-of-concept vectors.
-- Audit conclusions apply only to each report's stated scope and reviewed revision; later source changes are not implicitly covered.
-- The audit artifacts are maintained separately and are intentionally not included in this source-only disclosure.
+## Audits
 
-## Contents
+Abyss has completed three adversarial audit rounds with **Kimi K3**:
 
-This disclosure contains exactly **71 regular files**:
+| Date | Scope | Result |
+| --- | --- | --- |
+| 2026-08-19 | Full Abyss source, modified v3 port, quote-fee math, deployment contracts, and a live Sepolia deployment | Findings were remediated and rechecked; the final remediated suite passed 140/140 tests |
+| 2026-08-20 | Pinned pool and periphery source, differential fuzzing, invariants, and live Sepolia exploitation | No critical or high-severity vulnerability found; 15/15 local attacks and 11 live adversarial checks resisted |
+| 2026-08-28 | Pool core, quote engine, settlement, oracle behavior, periphery changes, and the canonical launch path | No critical, high, or medium vulnerability found; all 8 proof-of-concept attack vectors resisted |
 
-- **63 Solidity source files** under [`src/`](src/), copied unchanged from the project source tree;
-- **1 derivative provenance ledger** at [`provenance/derivative-manifest.json`](provenance/derivative-manifest.json);
-- **4 complete license texts** in [`licenses/`](licenses/): [GPL-2.0-or-later](licenses/GPL-2.0-or-later.txt), [Uniswap v3 BUSL-1.1](licenses/Uniswap-v3-BUSL-1.1.txt), [Uniswap v3 MIT](licenses/Uniswap-v3-MIT.txt), and [Solady MIT](licenses/Solady-MIT.txt);
-- **1 project-owned branding image** at [`assets/abyss-header.png`](assets/abyss-header.png); and
-- this README plus the curated [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+These were machine-conducted reviews of specific source snapshots. They are evidence, not a guarantee that the contracts are free of defects. The full audit artifacts are maintained separately from this source-only repository.
 
-Intentionally omitted are dependency and library source (including Solady), build configuration, package and lock files, tests, scripts, deployment or broadcast material, operational addresses and configuration, artifacts, caches, audits, analyses, threat models, private specifications and documentation, CI material, Git metadata or history, and secrets.
+## Source
 
-## Layout for inspection
+This repository contains the 63 Solidity contracts that make up Abyss, together with file-level provenance and the applicable license notices. The contracts are published for inspection.
 
-- [`src/core/`](src/core/), including [`src/core/v3/`](src/core/v3/), contains pool and concentrated-liquidity source.
-- [`src/factory/`](src/factory/), [`src/interfaces/`](src/interfaces/), [`src/types/`](src/types/), and [`src/libraries/`](src/libraries/) contain supporting project source.
-- [`src/periphery/`](src/periphery/) and [`src/governance/`](src/governance/) contain the included peripheral and ownership-related source.
-- [`provenance/`](provenance/) records derivative identities; [`licenses/`](licenses/) holds the included license texts; and [`assets/`](assets/) holds the disclosure header.
+Build dependencies, tests, deployment scripts, addresses, operational configuration, broadcasts, and private project history are deliberately excluded. This repository is therefore not a build or deployment package.
 
-Dependencies and build configuration are intentionally absent. The included imports therefore do not make this tree buildable, runnable, deployable, or a representation of deployed bytecode.
+## License and provenance
 
-## Attribution and provenance
+Abyss includes source derived from Uniswap v3 and imports pinned Solady components. See:
 
-Read the curated [third-party notices](THIRD_PARTY_NOTICES.md), the [derivative ledger](provenance/derivative-manifest.json), and the applicable [license texts](licenses/) together with each Solidity file's SPDX header and notices.
+- [Third-party notices](THIRD_PARTY_NOTICES.md)
+- [Derivative source manifest](provenance/derivative-manifest.json)
+- [License texts](licenses/)
 
-The header image was copied unchanged from the Abyss UI project's `public/abyss-social.png` under project-owner authorization. It is project-owned branding, not third-party material, and is not swept into or granted by any Solidity license.
+The header artwork comes from the Abyss UI project.
