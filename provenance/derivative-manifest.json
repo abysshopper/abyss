@@ -1,0 +1,800 @@
+{
+  "schema_version": 1,
+  "comparison_digest": "sha256(\"abyss-derivative-v1\\0\" || upstream_blob_sha1_ascii || \"\\0\" || local_sha256_ascii)",
+  "files": [
+    {
+      "local_path": "src/core/AbyssPoolBase.sol",
+      "local_sha256": "19b75e2ef8fe15b7f3018aac404ea99130d3c4beb26c9176909145dc923d2b8a",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/UniswapV3Pool.sol",
+      "upstream_blob_sha1": "9e0982127248a69e3bf054049c7db966497793f9",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/UniswapV3Pool.sol",
+      "reference_sha256": "d515775b7f3ffe921dd70aca86b8bad16280fa4c122425d82b4dbea4dc564a7a",
+      "modified_dates": [
+        "2026-08-17",
+        "2026-08-18"
+      ],
+      "change_categories": [
+        "split-derivative",
+        "profile-configuration",
+        "factory-authorization",
+        "protocol-fees"
+      ],
+      "change_summary": "Split the v3 pool implementation into an Abyss base for immutable profiles, factory authorization, protocol-fee controls, and quote-token orientation.",
+      "comparison_sha256": "3aa28c5286e283b559067204baad27b73de5db6488a0428ad1990ce49c3990e5"
+    },
+    {
+      "local_path": "src/core/AbyssQuotePoolBase.sol",
+      "local_sha256": "4b8f9101970e5957e8ccf58aeed1b8c54788ad0afefd3c38e643c37cf49a7053",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/UniswapV3Pool.sol",
+      "upstream_blob_sha1": "9e0982127248a69e3bf054049c7db966497793f9",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/UniswapV3Pool.sol",
+      "reference_sha256": "d515775b7f3ffe921dd70aca86b8bad16280fa4c122425d82b4dbea4dc564a7a",
+      "modified_dates": [
+        "2026-08-17",
+        "2026-08-18",
+        "2026-08-19"
+      ],
+      "change_categories": [
+        "split-derivative",
+        "swap-adaptation",
+        "quote-fee-accounting",
+        "rounding-residue",
+        "oracle-policy",
+        "checked-fee-growth"
+      ],
+      "change_summary": "Split and adapted v3 swap execution for Abyss quote-only fee accounting, exact-input rounding-residue consumption, saturated exact-output requests, zero-net traversal progress, callback settlement, required oracle-write policy, and checked global fee-growth accumulation that reverts instead of erasing backed LP ownership on a full Q128 cycle.",
+      "comparison_sha256": "b9646e356a060fe67be230951ecfebd4356013f32fe51a3344f04f266ecc8745"
+    },
+    {
+      "local_path": "src/core/v3/NoDelegateCall.sol",
+      "local_sha256": "5e760205c821435e85a4f1725e31c6208908d3ff3bd96822ab235a6dbdb86a97",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/NoDelegateCall.sol",
+      "upstream_blob_sha1": "5411979dcb6457f59b770d87f4ab7129d4cabd71",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/NoDelegateCall.sol",
+      "reference_sha256": "c2b03bbf6ae73415e9f60fb2bcdad1ee9dbb3ab1f27f9b12384c44d11a5624e0",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "delegatecall-guard-port"
+      ],
+      "change_summary": "Ported the pinned v3 delegatecall guard to Solidity 0.8.26 while retaining its deployment-address guard design.",
+      "comparison_sha256": "faf1e314369e5e011df51ba647c2c78f1ccef533d340e93bd4e51ab1df638681"
+    },
+    {
+      "local_path": "src/core/v3/UniswapV3Pool.sol",
+      "local_sha256": "d517da86a9bd4acb11ecbc0cc4761eb5a963a11ba4df44bb1293f1fa16c48ed3",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/UniswapV3Pool.sol",
+      "upstream_blob_sha1": "9e0982127248a69e3bf054049c7db966497793f9",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/UniswapV3Pool.sol",
+      "reference_sha256": "d515775b7f3ffe921dd70aca86b8bad16280fa4c122425d82b4dbea4dc564a7a",
+      "modified_dates": [
+        "2026-08-17",
+        "2026-08-19"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-preservation",
+        "integration-adaptation",
+        "checked-fee-growth"
+      ],
+      "change_summary": "Ported the pinned v3 pool implementation to Solidity 0.8.26, preserving modular tick and position snapshot arithmetic while adapting imports/source syntax for Abyss and making token-denominated global fee-growth accumulation checked so a full cycle reverts instead of erasing backed LP ownership.",
+      "comparison_sha256": "d3ccbd8ce35623fb4f8288594268bcb5d66ddec5577b4ed67315e6901a9b19bf"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/IERC20Minimal.sol",
+      "local_sha256": "e6fa0bf7f4a1bbf1479555091101e91a7be0489645887f61b28c977a29b27f58",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/IERC20Minimal.sol",
+      "upstream_blob_sha1": "c303265a3b0d5a62d4d8a7adc1715990ad972947",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/IERC20Minimal.sol",
+      "reference_sha256": "bb0bf574bdfd637eb7d3c0869e8170314d5aac37df8e86cd3ca808f828c7c22a",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IERC20Minimal.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "efad9fc59970792d86056ff9bbf7aed36ac2ea4aa3a60dd39613857f8ca3f325"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/IUniswapV3Factory.sol",
+      "local_sha256": "b2605f0e0a418999d249871446f381a558f5847856ee8aac4f53c8f42efa5512",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/IUniswapV3Factory.sol",
+      "upstream_blob_sha1": "540cfdc68167776e12d54f3a66765656af2bab26",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/IUniswapV3Factory.sol",
+      "reference_sha256": "17c72e89a7d0eecca7929ca08d97f46e80930ef7024e4ccbc7b294c588477107",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3Factory.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "d1f997f42b96a277897eaa6cb42877a160fba61925c7bee4119137592d4d2dce"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/IUniswapV3Pool.sol",
+      "local_sha256": "7320472a2a105f621b810c0c6bfb5ac81ea796063c6fc86fd414e3475728e9a8",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/IUniswapV3Pool.sol",
+      "upstream_blob_sha1": "56df0500dfb7fbb6df832fe96a9d7e77fb143c7d",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/IUniswapV3Pool.sol",
+      "reference_sha256": "b0f97121de74f3c916503f6ec37fa1ba196affd1cc02157e47ab00125dde91fe",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3Pool.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "af53c5e2d7425bfc97fb53c59f633cca01d654bcd154c62c1d6631164ea96c09"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/IUniswapV3PoolDeployer.sol",
+      "local_sha256": "837ad36c1ca0d8d447e4c46ed773268941ff12e113715f2d759415a65c00fde8",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/IUniswapV3PoolDeployer.sol",
+      "upstream_blob_sha1": "72096c1ff597f8541f78763455fb53bcdc77ac4d",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/IUniswapV3PoolDeployer.sol",
+      "reference_sha256": "48908460f444abc497b261e38a38540effecbf5c99d17e60d849f1d0acfb1fe6",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3PoolDeployer.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "ca2cbd39363120455de6c6a51e7b6360000638cdc671b63bbd02cc2f7aabb6e5"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/callback/IUniswapV3FlashCallback.sol",
+      "local_sha256": "40274b97ed64da6fc61c234e394999cb4bd257c87cc17b8bc44c419449dc168a",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/callback/IUniswapV3FlashCallback.sol",
+      "upstream_blob_sha1": "18e54c4e12cc471449b6e003bdee85360787ef5a",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/callback/IUniswapV3FlashCallback.sol",
+      "reference_sha256": "612135b515e651db56cd80191cd56c0b982eaae954c5b1c4d1dc111f8968d5b8",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3FlashCallback.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "04cb5fa3911880579e79f23ba038dbfa087d605bb895229a2681eefa9d9f2c3d"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/callback/IUniswapV3MintCallback.sol",
+      "local_sha256": "7baeaaeafffc5a9b69af7be11eb6ea326e56bbc5235737070f121eea1e1c1c8f",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/callback/IUniswapV3MintCallback.sol",
+      "upstream_blob_sha1": "85447e84f9b6493eb9699086ed3be2edc52467a0",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol",
+      "reference_sha256": "4dbecbcec83e4f5609d72309f40be3eac554f8517ed46e6345bd35069c9bbc23",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3MintCallback.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "8ec575fd621e40f3acaab624df4e75e0c8333778fad7a2434c42142de40d64b8"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/callback/IUniswapV3SwapCallback.sol",
+      "local_sha256": "c179dadd994cbdd5fb9e2896e378ee33dba3277a1a8e28dcae8b76d6309fd8c9",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/callback/IUniswapV3SwapCallback.sol",
+      "upstream_blob_sha1": "9f183b22a7016eae4d036db15077bc791cb8fb04",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol",
+      "reference_sha256": "171a9a692e71b6d532df655695b0b672bd8ea5dcca3b3363131700b45b0171c6",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3SwapCallback.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "e86a03d2f226d1121e0bb4935fdae8fa7550748c52b4a3e2763e8bee382f09ca"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/pool/IUniswapV3PoolActions.sol",
+      "local_sha256": "298e20d35b0b525a7fcb62bc78a90efb1148d3418f87d38adc49c3f909d8262a",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/pool/IUniswapV3PoolActions.sol",
+      "upstream_blob_sha1": "44fb61c24aaf14e4a767ee6eece840e807b3c35b",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol",
+      "reference_sha256": "7fc763acbf5e7044d88cae4a6ed7b1c99b5268d647ae794ba5ee1085060e6a2c",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3PoolActions.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "fb290230892292fc1c9c784fc798360038e34bf31be7bcf435186e60778f2565"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/pool/IUniswapV3PoolDerivedState.sol",
+      "local_sha256": "5a06d80ef7a14cf1762580279ff3c304ad2d3f871e9e5c6d886cb3ea633169cf",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol",
+      "upstream_blob_sha1": "eda3a0089de2e0ad257d9daebcf65619b63f2b44",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol",
+      "reference_sha256": "9f670bdfed3a283e0557b208a5d4bc561afd2df771d67c4368dddaae2dc1b6e3",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3PoolDerivedState.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "bc01f2970753d65ab2499eca7ad11063b72ee6db6a5a1badb849fa4b6f7625b7"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/pool/IUniswapV3PoolEvents.sol",
+      "local_sha256": "5055a3e598605d10ffc2eebf4deb3452029751dded646056bd2a60f8c8ebba39",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/pool/IUniswapV3PoolEvents.sol",
+      "upstream_blob_sha1": "9d915dde934fc7a0430195f29bb2172c47783a3d",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/pool/IUniswapV3PoolEvents.sol",
+      "reference_sha256": "2c2b798ca4288dfdf746bca8516b4e725b79ca6636af3d38a5a64801e50020a7",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3PoolEvents.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "64295432426b543d3f3e2e768f0bdbad49bdb6785b58f336a699b5b1847aab6e"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/pool/IUniswapV3PoolImmutables.sol",
+      "local_sha256": "ab531aa7a72845dfe41aa9a8edfe7aaf4624bfb98a07950218f0c11ff0cb9dbb",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/pool/IUniswapV3PoolImmutables.sol",
+      "upstream_blob_sha1": "c9beb151e3309f0d59664c400d3e41275bdf2e48",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/pool/IUniswapV3PoolImmutables.sol",
+      "reference_sha256": "ac6332f7e174db7fa3852a6c5ae3da3bd013e72c2ff8fa1cf2ec37f6916e2951",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3PoolImmutables.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "3336901981dfe9de7508cbe3bcc3db08d1bad4d0b5eac05e1d506365b86042f7"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/pool/IUniswapV3PoolOwnerActions.sol",
+      "local_sha256": "11bc73519da214bf9d5f80c75555a0aef0545464878e4c756b15f238c1c6a747",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol",
+      "upstream_blob_sha1": "2395ed321df4092acadd99b67530d7650fb3858c",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol",
+      "reference_sha256": "5f4cd982d6abe55237bc770da3b667f96edf048c230cfe3d7f6309c92cc0e205",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3PoolOwnerActions.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "79e75a358aa6c0a00d216c321d3069916c1d5c3963419bcaf1ba3d5a055f1a22"
+    },
+    {
+      "local_path": "src/core/v3/interfaces/pool/IUniswapV3PoolState.sol",
+      "local_sha256": "cb38764cc5ede8ca12e857df4ee1229a79330ade3e9e673df9415414c97a3448",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/interfaces/pool/IUniswapV3PoolState.sol",
+      "upstream_blob_sha1": "620256c3118ccd3897f1b2ac82529dc93729a14b",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol",
+      "reference_sha256": "d8d3937703d08d95f7f867a0f49c2aa73c3f3ef5508a54d431e829295f5175ea",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "interface-syntax"
+      ],
+      "change_summary": "IUniswapV3PoolState.sol: ported the pinned v3 interface to Solidity 0.8.26; the digest captures pragma, syntax, formatting, and ABI-preserving source changes.",
+      "comparison_sha256": "e8563686d15110c4c7ed98bc5cb7d47fe264ff118efb50d225c5552cd90f7db5"
+    },
+    {
+      "local_path": "src/core/v3/libraries/BitMath.sol",
+      "local_sha256": "f2d83911596a250d74df3e4cefe438125b5fbaa2248baa9e7def5d8f3367f560",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/BitMath.sol",
+      "upstream_blob_sha1": "3a7216c7bd5e9d124957c7f7e487dafff7c8855c",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/libraries/BitMath.sol",
+      "reference_sha256": "32f71ea9156f55572a72efb0b2a913df88de66ff33d042043fb3e51a6050a557",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-review"
+      ],
+      "change_summary": "BitMath.sol: ported the pinned v3 library to Solidity 0.8.26; the digest captures all pragma, syntax, formatting, and arithmetic-semantics changes.",
+      "comparison_sha256": "c13752aab1469980c758e20720af15c55650f595ee7ac956711786f8e48f3c37"
+    },
+    {
+      "local_path": "src/core/v3/libraries/FixedPoint128.sol",
+      "local_sha256": "f34fa3ca4e609a746375d554ea79aeaf21d3e135b0b6cab50cdf95c2a5adf342",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/FixedPoint128.sol",
+      "upstream_blob_sha1": "6d6948b106003cf35f8f877b7913cbc933133ed9",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/libraries/FixedPoint128.sol",
+      "reference_sha256": "cfc3aef8851f183492547dccc168bf72398fba2aad4c4d9d4784f542a8ccda34",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-review"
+      ],
+      "change_summary": "FixedPoint128.sol: ported the pinned v3 library to Solidity 0.8.26; the digest captures all pragma, syntax, formatting, and arithmetic-semantics changes.",
+      "comparison_sha256": "ff8f871c71a5a36ab1e95e224ea5ed5d87fc827c4e875488cb35f19c481911f7"
+    },
+    {
+      "local_path": "src/core/v3/libraries/FixedPoint96.sol",
+      "local_sha256": "d2f87e5ce2aeeef107c8fb11991687978d66de85e38128253ac9c7d87121b508",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/FixedPoint96.sol",
+      "upstream_blob_sha1": "63b42c294e821eb038793b7f1afb9ae0427f0691",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/libraries/FixedPoint96.sol",
+      "reference_sha256": "219deb88ffbcdefa482be35051db586378e8523062bee592dd2c5fa7fb47ebd6",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-review"
+      ],
+      "change_summary": "FixedPoint96.sol: ported the pinned v3 library to Solidity 0.8.26; the digest captures all pragma, syntax, formatting, and arithmetic-semantics changes.",
+      "comparison_sha256": "f161bbc7211c37d4f50f35593ddfa8b099e7960ce3dd3aca224a6eb1e0f156af"
+    },
+    {
+      "local_path": "src/core/v3/libraries/FullMath.sol",
+      "local_sha256": "c8cb11dc536ab90b157f177d7a979b89e5f968e2a3116599e84bc717c99733dc",
+      "local_spdx": "MIT",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/FullMath.sol",
+      "upstream_blob_sha1": "8688a1773ffbb5ec93d3abbe983f8c16141f9139",
+      "upstream_spdx": "MIT",
+      "reference_local_path": "lib/v3-core/contracts/libraries/FullMath.sol",
+      "reference_sha256": "54087aee268a6938a85a408d7b14481b5c2c956c21508d5583f1bf48ec6d69ba",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "assembly-modernization",
+        "checked-arithmetic-preservation"
+      ],
+      "change_summary": "Ported 512-bit multiplication/division to Solidity 0.8.26, including explicit unchecked arithmetic and modern assembly syntax; retains the exact Remco Bloemen MIT credit.",
+      "comparison_sha256": "344d11ff7e286fc4ffd83f6e01045802b9197cd53f0fbe1c051d21de77face55"
+    },
+    {
+      "local_path": "src/core/v3/libraries/LiquidityMath.sol",
+      "local_sha256": "9f8724fda972419eecda4fabbcc747fd7be103a7165053479f667b3b42396b33",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/LiquidityMath.sol",
+      "upstream_blob_sha1": "d5e23032e8b9323de3df2b8d71d9bcc516cc5d6e",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/libraries/LiquidityMath.sol",
+      "reference_sha256": "84d20a16d5346f6ec4c12dff4df23dda5d46e52d33f18aaaaac2e9e36ce4a072",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-review"
+      ],
+      "change_summary": "LiquidityMath.sol: ported the pinned v3 library to Solidity 0.8.26; the digest captures all pragma, syntax, formatting, and arithmetic-semantics changes.",
+      "comparison_sha256": "c96c13795af7fb32ec85e8b9db73d6508893abb91a6c6d815cdf776e6ed8e6d8"
+    },
+    {
+      "local_path": "src/core/v3/libraries/LowGasSafeMath.sol",
+      "local_sha256": "66ecf5d821feecfe858db69a919a503037b71ca777990da19e74bd3bda22a86f",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/LowGasSafeMath.sol",
+      "upstream_blob_sha1": "dbc817c2ec806775b7c9b213c6db0dffe00ea8cd",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/libraries/LowGasSafeMath.sol",
+      "reference_sha256": "394107ff2dbbaded5612452af5e77b4af9d0871b096c1514b0ea659b862fc46f",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "arithmetic-helper-port"
+      ],
+      "change_summary": "Ported the v3 arithmetic helper to Solidity 0.8.26; the digest captures adaptation to native checked arithmetic semantics.",
+      "comparison_sha256": "518ff6bf00f8ede8807ced9e8db4fb185dcf2cb93ab0dfdcf10f16f4b91f3a48"
+    },
+    {
+      "local_path": "src/core/v3/libraries/Oracle.sol",
+      "local_sha256": "b6454fa6126338faacad8ddf4a2d962bb15b4a993a70f3e8e92bf719e35d254c",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/Oracle.sol",
+      "upstream_blob_sha1": "3f6b3f32c99b82960c0fffd82340b845a03b1496",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/libraries/Oracle.sol",
+      "reference_sha256": "eea86662877614f800344bbe432098f9edf55735f5d1c9474ebd64b55097771b",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-preservation",
+        "oracle-port"
+      ],
+      "change_summary": "Ported the v3 observation ring-buffer library to Solidity 0.8.26, making intended wraparound arithmetic explicit.",
+      "comparison_sha256": "360d1ac48e02463c0f6bb3e3c375b7c85a6398bf850296e493b522fb909c7284"
+    },
+    {
+      "local_path": "src/core/v3/libraries/Position.sol",
+      "local_sha256": "a3a18cc64f00e6aac7618493ef09f2a3bf06740942f18291189817373641039d",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/Position.sol",
+      "upstream_blob_sha1": "1c67c7f279ff9dcf7d6bdaff12a5d3b1b5336a97",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/libraries/Position.sol",
+      "reference_sha256": "a9130c72e3adb7d3fa10ee5050fc9375d6119a8250125fe7daacec94450be21d",
+      "modified_dates": [
+        "2026-08-17",
+        "2026-08-19"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-review",
+        "checked-fee-growth"
+      ],
+      "change_summary": "Position.sol: ported the pinned v3 library to Solidity 0.8.26, retained modular inside-growth snapshot differences, widened monetary liabilities, and documented that global fee-growth additions are checked.",
+      "comparison_sha256": "12b20f8154bb58de40ffd43af01f82326671a7c2e6242c26a57d8f4c50a93f1a"
+    },
+    {
+      "local_path": "src/core/v3/libraries/SafeCast.sol",
+      "local_sha256": "82bfeae16a0acc9d7a60d1b9b0b7b110289c144e1233228278ee1a932535f57f",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/SafeCast.sol",
+      "upstream_blob_sha1": "a8ea22987877b615fcf3a557512b240eff1b77c7",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/libraries/SafeCast.sol",
+      "reference_sha256": "9aed494b56d3dd16b7d6535583ded2cdfb03dc80aaa919347b13d35fd597e8bf",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-review"
+      ],
+      "change_summary": "SafeCast.sol: ported the pinned v3 library to Solidity 0.8.26; the digest captures all pragma, syntax, formatting, and arithmetic-semantics changes.",
+      "comparison_sha256": "faa8798e6f1e3b32aa5cbaffec65f2dada673eb6ff9e408f4aaf7607922294b5"
+    },
+    {
+      "local_path": "src/core/v3/libraries/SqrtPriceMath.sol",
+      "local_sha256": "d5ce4505a12b4417fa3318f20c93fce9d1e319a8e5c02c3e967f5765884e4b0e",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/SqrtPriceMath.sol",
+      "upstream_blob_sha1": "685f485da43402235c3a9ce7fd85a49597b6373a",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/libraries/SqrtPriceMath.sol",
+      "reference_sha256": "ddd62e3a94346248677f30f1ab009ef015e71e4b8696dcca890eeabc9dc6c149",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-preservation",
+        "price-math-port"
+      ],
+      "change_summary": "Ported v3 square-root price arithmetic to Solidity 0.8.26 while preserving rounding and overflow branches.",
+      "comparison_sha256": "359285f4ac85a3916a5388ef73277e3b440dee6e42742cb371ef0c3dbdfc2ae7"
+    },
+    {
+      "local_path": "src/core/v3/libraries/SwapMath.sol",
+      "local_sha256": "06b5b43d7b3a54fb4ad5fec11bed7b9dbc2b04fd9d4b44fb669cfc106a2eda98",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/SwapMath.sol",
+      "upstream_blob_sha1": "ee176fbee4ae2fb2ba7da4ddd00391fe6b685f39",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/libraries/SwapMath.sol",
+      "reference_sha256": "d6cb9a153be4ea9fb2377ef88641ef7979b5cee6933162f1b732d0289e26e1b6",
+      "modified_dates": [
+        "2026-08-17",
+        "2026-08-18"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-preservation",
+        "swap-math-port"
+      ],
+      "change_summary": "Ported canonical swap-step arithmetic to Solidity 0.8.26 and preserved the Solidity 0.7 exact-output magnitude domain, including type(int256).min, with an overflow-safe cached magnitude.",
+      "comparison_sha256": "d9e6fc92207f6e1007073c0887bf57317574fcd97d83286e67e9f5abee805d99"
+    },
+    {
+      "local_path": "src/core/v3/libraries/Tick.sol",
+      "local_sha256": "b56189e38211ad5179778455e0949aa2df91d534cd628b8b9b01a42ed6c881e8",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/Tick.sol",
+      "upstream_blob_sha1": "13d34284942923f226ecbe84adc913df17f38523",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/libraries/Tick.sol",
+      "reference_sha256": "749121625ab364e653971fae786a9c8e0859c8327e746d9edd999ae9d16f3d71",
+      "modified_dates": [
+        "2026-08-17",
+        "2026-08-19"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-preservation",
+        "tick-accounting-port",
+        "checked-fee-growth"
+      ],
+      "change_summary": "Ported v3 tick accounting to Solidity 0.8.26, retained modular inside/outside fee-growth complements, and documented that global fee-growth additions are checked.",
+      "comparison_sha256": "5356def8f0169a4797523fc44a2cda0e56bbe2b71ce69e0e2ba28a2d7912c3cd"
+    },
+    {
+      "local_path": "src/core/v3/libraries/TickBitmap.sol",
+      "local_sha256": "7810b4fdb6434113733ecad7967c6744180cf7b6cf7ecaa3a37cb33b8897b288",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/TickBitmap.sol",
+      "upstream_blob_sha1": "3c43585771d48b7b1868fd1b09212ec115088d1a",
+      "upstream_spdx": "BUSL-1.1",
+      "reference_local_path": "lib/v3-core/contracts/libraries/TickBitmap.sol",
+      "reference_sha256": "bd7a17c5134f0718eb7d856ddfc58d8347d32a8f661bed53aa3ad17c9aea09ba",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-preservation",
+        "bitmap-port"
+      ],
+      "change_summary": "Ported the BUSL-marked v3 tick bitmap implementation to Solidity 0.8.26 under the recorded GPL-2.0-or-later change license.",
+      "comparison_sha256": "5a323e5a26788b2a39e8714b773f658ce05ee54e6a16e75247483ba216a5b9f5"
+    },
+    {
+      "local_path": "src/core/v3/libraries/TickMath.sol",
+      "local_sha256": "28f142506a08b43a0c909c0ce70ca3d5ea17836c2dbec0884b3144ebf2592f22",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/TickMath.sol",
+      "upstream_blob_sha1": "378e44528caeb7fa0ce2f86b8a39f6d0785a0925",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/libraries/TickMath.sol",
+      "reference_sha256": "83cf64b2ca84001effd16e007b49bac5359143b6c3132bfe42907b2426a0c5f5",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-review"
+      ],
+      "change_summary": "TickMath.sol: ported the pinned v3 library to Solidity 0.8.26; the digest captures all pragma, syntax, formatting, and arithmetic-semantics changes.",
+      "comparison_sha256": "49f68da8c69747500a04ad946e6a4fb12de8e5a109b443e5e67af1c765495ef8"
+    },
+    {
+      "local_path": "src/core/v3/libraries/TransferHelper.sol",
+      "local_sha256": "acb46d1825692409ecdef1d392ebf5e81bea4dc5e19d0c6750f704b2bb26fcb4",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/TransferHelper.sol",
+      "upstream_blob_sha1": "25d6309028b79fcdeddd7435d642b5e11d8fe707",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/libraries/TransferHelper.sol",
+      "reference_sha256": "f15b94bc000ee68e434c3ff4c28696c3f5bc23222bd6249744a7228b063e267b",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "token-call-port"
+      ],
+      "change_summary": "Ported the v3 low-level ERC-20 transfer helper to Solidity 0.8.26 without changing its success-data acceptance contract.",
+      "comparison_sha256": "55d21ffc48268ece60cc112222cbf5d9056afff036cb6f011ded9ce6b2084dc8"
+    },
+    {
+      "local_path": "src/core/v3/libraries/UnsafeMath.sol",
+      "local_sha256": "ac73a2d39b7795a40c66854401dd4493a0a00671f220ca65654e66fdc22f0dc3",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-core",
+      "commit": "e3589b192d0be27e100cd0daaf6c97204fdb1899",
+      "upstream_path": "contracts/libraries/UnsafeMath.sol",
+      "upstream_blob_sha1": "f62f84676fa39f98b4ae1f7a073fc767ecf78aaa",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "lib/v3-core/contracts/libraries/UnsafeMath.sol",
+      "reference_sha256": "4d02353eb503e3111e25bd50104ac9b279f99e88d848e455262a3fbeb55c50e7",
+      "modified_dates": [
+        "2026-08-17"
+      ],
+      "change_categories": [
+        "compiler-migration",
+        "checked-arithmetic-preservation"
+      ],
+      "change_summary": "Ported intentional unchecked division-rounding arithmetic to Solidity 0.8.26.",
+      "comparison_sha256": "bfa90e4c08bcc812b0e08851f9a2fda3164ebd8d954b8d6e322a4261b5cceb63"
+    },
+    {
+      "local_path": "src/periphery/AbyssPositionManager.sol",
+      "local_sha256": "922fcb45c13ef73725b8d742ed41ab420aaaedf06cb1d5775f39e6a442ea6a29",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-periphery",
+      "commit": "80f26c86c57b8a5e4b913f42844d4c8bd274d058",
+      "upstream_path": "contracts/NonfungiblePositionManager.sol",
+      "upstream_blob_sha1": "68532a0bbc4230c170c55e40f081bed498be0d71",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": null,
+      "reference_sha256": null,
+      "modified_dates": [
+        "2026-08-17",
+        "2026-08-18",
+        "2026-08-19",
+        "2026-08-22"
+      ],
+      "change_categories": [
+        "adapted-derivative",
+        "per-nft-custody",
+        "liquidity-lifecycle",
+        "solady-erc721-integration",
+        "guarded-multicall-launch"
+      ],
+      "change_summary": "Adapted the v3 NFT position-manager model to authenticated Abyss pools using one immutable canonical pool custody account per NFT, authoritative pool-liquidity synchronization before lifecycle decisions, manager-verified payer settlement, transferable control, guarded delegatecall multicall for atomic launch settlement with pool-address and price-bounds validation, and the pinned Solady ERC721 base.",
+      "comparison_sha256": "0b1858e7fdbeeae7ddb189997c0425f362b08c463865c30a7a5c0b386eba23be"
+    },
+    {
+      "local_path": "src/periphery/AbyssQuoter.sol",
+      "local_sha256": "cefd0e52802e2166130589b7bebecc845500cb77ec89a8aa42f61fba95e54359",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-periphery",
+      "commit": "80f26c86c57b8a5e4b913f42844d4c8bd274d058",
+      "upstream_path": "contracts/lens/Quoter.sol",
+      "upstream_blob_sha1": "f4a9ed67d6af35e56f9c55abb70cbdee44071ce8",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": null,
+      "reference_sha256": null,
+      "modified_dates": [
+        "2026-08-17",
+        "2026-08-18",
+        "2026-08-19",
+        "2026-08-22"
+      ],
+      "change_categories": [
+        "adapted-derivative",
+        "execution-backed-quote",
+        "structured-revert",
+        "multihop-quote-validation"
+      ],
+      "change_summary": "Adapted the v3 revert-based quoter pattern to authenticated Abyss pools, structured amount-delta revert results, nested quote callback-context restoration, and bounded exact-input multihop quotes with validated hop paths.",
+      "comparison_sha256": "11c65ae8fba871f80fb02d42c90eed519df22d8fb2c31d33d689a8baf3d449eb"
+    },
+    {
+      "local_path": "src/periphery/AbyssRouter.sol",
+      "local_sha256": "444066a37f6f1ffcaa11c61f409a9d48c3a973d8c660d5eca7d7787426bdda18",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-periphery",
+      "commit": "80f26c86c57b8a5e4b913f42844d4c8bd274d058",
+      "upstream_path": "contracts/SwapRouter.sol",
+      "upstream_blob_sha1": "0b14d56408ee05a3e04dde91280dcef924377d89",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": null,
+      "reference_sha256": null,
+      "modified_dates": [
+        "2026-08-17",
+        "2026-08-18",
+        "2026-08-22"
+      ],
+      "change_categories": [
+        "adapted-derivative",
+        "single-hop-and-multihop-routing",
+        "callback-authentication",
+        "slippage-deadline"
+      ],
+      "change_summary": "Adapted the v3 router architecture to authenticated Abyss pool-key swaps, pool-key callbacks, payer settlement, deadlines, slippage bounds, and bounded validated exact-input multihop routing under a reentrancy lock.",
+      "comparison_sha256": "d303838cdd875ab30b14044122855a01d5dc2e4a432e7607e4e4b53b754a42bc"
+    }
+  ]
+}
