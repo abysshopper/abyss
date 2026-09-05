@@ -30,7 +30,11 @@ These were machine-conducted reviews of specific source snapshots. They are evid
 
 This repository contains the 66 Solidity contracts that make up Abyss, together with file-level provenance and the applicable license notices. The contracts are published for inspection.
 
-Build dependencies, tests, deployment scripts, addresses, operational configuration, broadcasts, and private project history are deliberately excluded. This repository is therefore not a build or deployment package.
+Build dependencies, tests, deployment scripts, operational configuration, broadcasts, and private project history are deliberately excluded. This repository is therefore not a build or deployment package. Canonical deployment addresses are documented in [integration/deployments.md](integration/deployments.md).
+
+## Integration
+
+Guides for indexers, routers, quoters, positions, and fee flows live in [integration/](integration/README.md), including canonical deployment addresses and the event catalog.
 
 ## License and provenance
 
