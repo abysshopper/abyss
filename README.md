@@ -28,7 +28,7 @@ These were machine-conducted reviews of specific source snapshots. They are evid
 
 ## Source
 
-This repository contains the 63 Solidity contracts that make up Abyss, together with file-level provenance and the applicable license notices. The contracts are published for inspection.
+This repository contains the 66 Solidity contracts that make up Abyss, together with file-level provenance and the applicable license notices. The contracts are published for inspection.
 
 Build dependencies, tests, deployment scripts, addresses, operational configuration, broadcasts, and private project history are deliberately excluded. This repository is therefore not a build or deployment package.
 

@@ -795,6 +795,31 @@
       ],
       "change_summary": "Adapted the v3 router architecture to authenticated Abyss pool-key swaps, pool-key callbacks, payer settlement, deadlines, slippage bounds, and bounded validated exact-input multihop routing under a reentrancy lock.",
       "comparison_sha256": "d303838cdd875ab30b14044122855a01d5dc2e4a432e7607e4e4b53b754a42bc"
+    },
+    {
+      "local_path": "src/periphery/AbyssRouterV2.sol",
+      "local_sha256": "7a9c97d776b67642f31ef9fe6f3c28573db0a91a836a59c0c54304e8d95bd65f",
+      "local_spdx": "GPL-2.0-or-later",
+      "repository": "https://github.com/Uniswap/v3-periphery",
+      "commit": "80f26c86c57b8a5e4b913f42844d4c8bd274d058",
+      "upstream_path": "contracts/SwapRouter.sol",
+      "upstream_blob_sha1": "0b14d56408ee05a3e04dde91280dcef924377d89",
+      "upstream_spdx": "GPL-2.0-or-later",
+      "reference_local_path": "src/periphery/AbyssRouter.sol",
+      "reference_sha256": "444066a37f6f1ffcaa11c61f409a9d48c3a973d8c660d5eca7d7787426bdda18",
+      "modified_dates": [
+        "2026-09-02"
+      ],
+      "change_categories": [
+        "adapted-derivative",
+        "single-hop-and-multihop-routing",
+        "callback-authentication",
+        "slippage-deadline",
+        "bounded-multihop",
+        "native-eth-boundary"
+      ],
+      "change_summary": "Extends the Abyss V1 router adaptation with a transaction-scoped native ETH boundary: wraps exact input on from-ETH routes, unwraps exact output on to-ETH routes, and accepts native value only from the immutable WETH contract. Upstream blob identity is conservatively recorded from the pinned periphery ledger, not separately verified.",
+      "comparison_sha256": "05d252be2b7353570ab8b64816a618c3a46b87034d77f325042bb0a2d2fe61e2"
     }
   ]
 }
