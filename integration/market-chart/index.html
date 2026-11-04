@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Abyss Market Terminal ΓÇö USDG edge case</title>
+<style>
+:root{color-scheme:dark}
+body{margin:0;padding:25px 22px 60px;background:
+radial-gradient(circle at 30% -15%,#153e42,#06171c 55%);color:#ecece4;
+font-family:system-ui,sans-serif}
+main{max-width:1380px;margin:auto}
+h1{font:normal 2rem Georgia,serif;letter-spacing:.035em;color:#d6b36c}
+p{max-width:1100px;color:#b7c6c8;line-height:1.55}
+.fact{background:#13252b;border-left:3px solid #c6a163;padding:10px 15px;margin:20px 0}
+code{color:#d5c184}
+</style>
+</head>
+<body>
+<main>
+<h1>ABYSS / VERIFIED MARKET TERMINAL</h1>
+<p>Hybrid market chart: preserve DexScreener's professional terminal for healthy pools;
+switch to TradingView Lightweight Charts backed by real executed swaps when the
+selected pool's active liquidity is exhausted. No synthetic zero-price candles.</p>
+<p class="fact"><strong>Historical USDG regression fixture</strong> ΓÇö Robinhood Chain pool
+<code>0xb39cΓÇª5c92</code> reached tick <code>887271</code> and zero active liquidity
+at 2026-11-04 01:11:02 UTC. The last swap executed at a nonzero price.
+The demonstration is historical and is not a live market or trading interface.
+The fixture uses a fixed illustrative ETH/USD value; real USD history requires
+timestamp-matched FX.</p>
+<div id="market-terminal"></div>
+</main>
+<script type="module" src="/demo-app.mjs"></script>
+</body>
+</html>

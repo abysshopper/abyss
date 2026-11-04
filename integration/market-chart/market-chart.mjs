@@ -153,7 +153,7 @@ export function candleSeries(executions, timeframeSeconds = 900, priceUnit = "qu
     const price = trade[field];
     if (!candle || candle.time !== time) {
       candle = { time, open: price, high: price, low: price, close: price,
-        baseVolume: 0, quoteVolume: 0, trades: 0 };
+        baseVolume: 0, quoteVolume: 0, usdVolume: 0, trades: 0 };
       candles.push(candle);
     }
     candle.high = Math.max(candle.high, price);
@@ -191,78 +191,13 @@ export function marketChartModel({
     health: status,
     // Never use the extreme spot sqrtPriceX96 as a token valuation.
     lastTradePrice: last?.close ?? null,
-    lastTradeTimestamp: last?.time ?? null,
+    lastTradeTimestamp: events.length
+      ? events.reduce((a, b) => a.timestamp > b.timestamp ||
+          (a.timestamp === b.timestamp && (a.blockNumber ?? 0) > (b.blockNumber ?? 0)) ? a : b).timestamp
+      : null,
     canDisplayLiveSpot: status.hasActiveLiquidity,
     mustRequestFreshSwapQuote: true,
     priceSource: "Abyss Swap event execution ratio",
     note: "This chart shows executed trade prices, not mid-market spot or a guaranteed executable quote.",
   };
-}
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, (c) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-}
-function priceText(price) {
-  if (!positiveFinite(price)) return "ΓÇö";
-  return price >= 1 ? price.toLocaleString("en-US", { maximumFractionDigits: 8 })
-    : price.toPrecision(6);
-}
-/**
- * Drop-in SVG chart HTML. Render into the chart container INSTEAD of the
- * DexScreener iframe for native Abyss pools. Works without a chart dependency.
- */
-export function renderMarketChart(model, { width = 860, height = 375 } = {}) {
-  const w = Math.max(320, width), h = Math.max(220, height);
-  const plotX = 65, plotY = 25, plotW = w - 95, plotH = h - 80;
-  const series = model.candles.slice(-300);
-  const minT = series[0]?.time ?? 0;
-  const maxT = series.at(-1)?.time ?? minT;
-  const lo = Math.min(...series.map((c) => c.low), Infinity);
-  const hi = Math.max(...series.map((c) => c.high), -Infinity);
-  const range = positiveFinite(hi - lo) ? hi - lo : Math.max(Math.abs(hi) * 0.04, 1e-15);
-  const yLo = Math.max(0, lo - range * 0.12), yHi = hi + range * 0.12;
-  const y = (p) => plotY + plotH * (1 - (p - yLo) / (yHi - yLo));
-  const x = (time) => plotX + plotW * (time - minT + 0.5 * model.timeframeSeconds) / Math.max(model.timeframeSeconds, maxT - minT + model.timeframeSeconds);
-  const candleWidth = Math.min(12, Math.max(2, plotW / Math.max(2, series.length) * 0.65));
-  const lines = [0, 1, 2, 3, 4].map((i) => {
-    const v = yLo + (yHi - yLo) * (1 - i / 4);
-    const yy = plotY + (plotH * i / 4);
-    return '<line x1="' + plotX + '" x2="' + (plotX + plotW) + '" y1="' + yy +
-      '" y2="' + yy + '" stroke="#28333c"/><text x="5" y="' + (yy + 4) +
-      '" font-size="11" fill="#adb9c0">' + escapeHtml(priceText(v)) + '</text>';
-  }).join("");
-  const candles = series.map((c) => {
-    const cx = x(c.time), green = c.close >= c.open;
-    const color = green ? "#13b9a6" : "#f65b67";
-    const top = y(Math.max(c.open, c.close));
-    const bh = Math.max(1.5, Math.abs(y(c.open) - y(c.close)));
-    return '<line x1="' + cx + '" y1="' + y(c.high) + '" x2="' + cx +
-      '" y2="' + y(c.low) + '" stroke="' + color + '" stroke-width="1.5"/>' +
-      '<rect x="' + (cx - candleWidth / 2) + '" y="' + top +
-      '" width="' + candleWidth + '" height="' + bh + '" fill="' + color + '"/>';
-  }).join("");
-  const title = escapeHtml(model.market.baseSymbol + "/" + model.market.quoteSymbol);
-  const priceLabel = model.priceUnit === "usd" ? "USD" : escapeHtml(model.market.quoteSymbol);
-  const banner = model.health.status === "out-of-range"
-    ? '<p class="abyss-chart-warning" role="status">Out of range ΓÇö zero active liquidity. No current executable pool price. Historical candles are executed swap prices.</p>'
-    : model.health.status === "unknown"
-      ? '<p class="abyss-chart-warning" role="status">Pool state unavailable. Verify live liquidity and get a fresh quote before trading.</p>'
-      : "";
-  const change = model.change24h === null ? "ΓÇö" : model.change24h.toFixed(2) + "%";
-  return '<section class="abyss-safe-chart" data-price-source="executed-swaps" data-pool-status="' +
-    escapeHtml(model.health.status) + '">' +
-    '<header><strong>' + title + ' ΓÇö executed trades</strong> <span>Last execution: ' +
-    escapeHtml(priceText(model.lastTradePrice)) + ' ' + priceLabel +
-    ' &nbsp; | &nbsp; 24h: ' + escapeHtml(change) + '</span></header>' +
-    banner + (model.currencyFallback ? '<p class="abyss-chart-warning" role="status">Historical quote/USD prices unavailable ΓÇö showing prices in the quote token instead.</p>' : "") +
-    (series.length ? '<svg role="img" aria-label="' + title +
-      ' executed-trade candlestick chart; gaps mean no trades" viewBox="0 0 ' + w + ' ' + h +
-      '" preserveAspectRatio="xMidYMid meet">' +
-      '<rect width="' + w + '" height="' + h + '" fill="#101821"/>' +
-      lines + candles + '<text x="' + plotX + '" y="' + (h - 16) +
-      '" font-size="12" fill="#adb9c0">' + escapeHtml(new Date(minT * 1000).toISOString()) +
-      '</text><text x="' + (w - 220) + '" y="' + (h - 16) +
-      '" font-size="12" fill="#adb9c0">' + escapeHtml(new Date(maxT * 1000).toISOString()) +
-      '</text></svg>' : '<p>No valid executed trades in the selected range.</p>') +
-    '<footer>Swap-event execution prices, not pool spot ticks. Do not use for swap quotes, NAV, or oracles.</footer></section>';
 }
