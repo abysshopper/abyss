@@ -9,6 +9,7 @@ flows.
 | --- | --- |
 | [Deployments](deployments.md) | Canonical contract addresses and chain configuration |
 | [Indexing events](indexing-events.md) | Event catalog, topics, discovery, and reorg handling |
+| [Safe market chart](market-chart/README.md) | Executed-swap candles and exhausted-range UI regression fix |
 | [Swapping](swapping.md) | Quoter and Router V1 exact-input/exact-output integration |
 | [Router V2 and native ETH](router-v2.md) | Native-in/native-out routes and their invariants |
 | [Positions and fees](positions-and-fees.md) | Position NFTs, the locker, protocol fees, and fee sweeping |

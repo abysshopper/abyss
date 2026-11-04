@@ -1,0 +1,21 @@
+{
+  "name": "@abyss/market-chart",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Interactive Abyss swap-event trading terminal with end-of-range safeguards",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test market-chart.test.mjs terminal-core.test.mjs",
+    "test:browser": "node browser.test.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.64.1",
+    "vite": "8.3.5"
+  },
+  "dependencies": {
+    "lightweight-charts": "5.2.1"
+  }
+}
